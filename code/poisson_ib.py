@@ -23,20 +23,31 @@ def J_operator(u, xib, yib, X, Y, dx, dy):
         J[k] = np.sum(u * delta_a(X - xib[k], Y - yib[k], dx)) * dx * dy
     return J
 
-def spreading_operator_optimized(q, xib, yib, X, Y, dx, prescribed_tol = 0):
+def local_window(xk, yk, x, y, dx, dy, tol):
+    s = 1.2 * dx
+    R = s * np.sqrt(2 * np.log(1 / (2 * np.pi * s**2 * tol)))
+    i0 = max(int(np.ceil((xk - R - x[0]) / dx)), 0)
+    i1 = min(int(np.floor((xk + R - x[0]) / dx)) + 1, len(x))
+    j0 = max(int(np.ceil((yk - R - y[0]) / dy)), 0)
+    j1 = min(int(np.floor((yk + R - y[0]) / dy)) + 1, len(y))
+    return i0, i1, j0, j1
+
+def spreading_operator_optimized(q, xib, yib, X, Y, dx, dy, prescribed_tol=1e-10):
+    x, y = X[:, 0], Y[0, :]
     S = np.zeros(X.shape)
     for k in range(len(q)):
-        delt_a = delta_a(X - xib[k], Y - yib[k], dx)
-        if (delt_a > prescribed_tol).any():
-            S += q[k] * delt_a
+        i0, i1, j0, j1 = local_window(xib[k], yib[k], x, y, dx, dy, prescribed_tol)
+        S[i0:i1, j0:j1] += q[k] * delta_a(X[i0:i1, j0:j1] - xib[k],
+                                          Y[i0:i1, j0:j1] - yib[k], dx)
     return S
 
-def J_operator_optimized(u, xib, yib, X, Y, dx, dy, prescribed_tol = 0):
+def J_operator_optimized(u, xib, yib, X, Y, dx, dy, prescribed_tol=1e-10):
+    x, y = X[:, 0], Y[0, :]
     J = np.zeros(len(xib))
     for k in range(len(xib)):
-        delt_a = delta_a(X - xib[k], Y - yib[k], dx)
-        if (delt_a > prescribed_tol).any():
-            J[k] = np.sum(u * delt_a) * dx * dy
+        i0, i1, j0, j1 = local_window(xib[k], yib[k], x, y, dx, dy, prescribed_tol)
+        J[k] = np.sum(u[i0:i1, j0:j1] * delta_a(X[i0:i1, j0:j1] - xib[k],
+                                                Y[i0:i1, j0:j1] - yib[k], dx)) * dx * dy
     return J
 
 
@@ -55,7 +66,7 @@ def Amult_optimized(unknowns, L, xib, yib, X, Y, dx, dy, prescribed_tol = 0):
     n = X.size
     u = unknowns[:n]
     q = unknowns[n:]
-    top = L @ u - spreading_operator_optimized(q, xib, yib, X, Y, dx, prescribed_tol).ravel()
+    top = L @ u - spreading_operator_optimized(q, xib, yib, X, Y, dx, dy, prescribed_tol).ravel()
     bottom = J_operator_optimized(u.reshape(X.shape), xib, yib, X, Y, dx, dy, prescribed_tol)
     return np.concatenate([top, bottom])
 
