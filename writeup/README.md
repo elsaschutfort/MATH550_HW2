@@ -45,7 +45,7 @@ When the IB points are very far apart compared to the finite difference mesh siz
 
 | ![Descriptive alt text](figures/Problem3_PotentialPE.png) |
 | :-: |
-| Figure 6: Solution to Problem 3 on 128 x 128 grid, with $u=0$ on the boundaries of the box and $u = \cos{(2x)}\sin{(2y)}$ prescribed on te immersed boundary  (red cuve: circle of radius 1 centered at $(\pi, \pi)$). The surface is flat away from the circle and is pulled up and down to match the boundaries along it, forming an "almost minimal surface." |
+| Figure 6: Solution to Problem 3 on 128 x 128 grid, with $u=0$ on the boundaries of the box and $u = \cos{(2x)}\sin{(2y)}$ prescribed on te immersed boundary  (red cuve: circle of radius 1 centered at $(\pi, \pi)$ ). The surface is flat away from the circle and is pulled up and down to match the boundaries along it, forming an "almost minimal surface." |
 
 
 ## Problem 4: Charlie's rule
