@@ -14,8 +14,13 @@ When we use the finite difference method to solve the Poisson equation we get
 
 | ![Descriptive alt text](figures/NumericalSolutionToPE.png) |
 | :-: |
-| *Figure 1: Numerical Solution to Poisson Equation for $u(x,y) = sin(2y)cos(2y)$* |
+| *Figure 1: Numerical Solution to Poisson Equation for u(x,y) = sin(2y)cos(2y)* |
 
+And the solution converges wuth second order in the grid size $\lambda x$
+
+| ![Descriptive alt text](figures/ConvergenceForPE.png) |
+| :-: |
+| *Figure 2: Relative error of the 2D Poisson solution with Dirchelet boundary conditions versus N.* |
 
 ## Problem 2: Poisson Equation with an Immersed Boundary
 
