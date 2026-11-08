@@ -34,7 +34,6 @@ for N in NxVals:
     diff_solutions.append(np.max(np.abs(U_o - U_n)))
 
 time_normal, time_optimized = np.array(time_normal), np.array(time_optimized)
-errInf_normal, errInf_optimized = np.array(errInf_normal), np.array(errInf_optimized)
 speedup = time_normal / time_optimized
 
 print(f"\n{'N':>5} {'t normal (s)':>13} {'t optimized (s)':>16} {'speed-up':>9} "
