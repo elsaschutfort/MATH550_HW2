@@ -22,37 +22,38 @@ $$u(0, y) = u(2\pi, y) = \sin(2y), \qquad u(x, 0) = u(x, 2\pi) = 0.$$
 
 | ![Surface plot of the Problem 1 solution](figures/NumericalSolutionToPE.png) |
 | :-: |
-| *Figure 1: Numerical Solution to Poisson Equation for $u(x,y) = \cos(2x)\sin(2y)$* |
-
-Figure 2 shows that both errors decrease with fitted slopes of approximately $-2$ confirminh second-order convergence in $\Delta x$.
+| *Figure 1: Numerical Solution to Poisson Equation for* $u(x,y) = \cos (2x) \sin (2y)$ |
 
 | ![Convergence plot of the Problem 1 solution](figures/ConvergenceForPE.png) |
 | :-: |
 | *Figure 2: Relative error of the 2D Poisson solution with Dirichlet boundary conditions versus N.* |
 
+Figure 2 shows that both errors decrease with fitted slopes of approximately $-2$ confirming second-order convergence in $\Delta x$.
+
+
 ## Problem 2: Poisson Equation with an Immersed Boundary
 
-We placed an unknown charge $q_k$ at each of $N_{ib}$ immersed boundary points on the circle (spaced $\approx \Delta x$ apart) and spread them onto the grid with a Gaussian kernel $\delta_a$ of width $\sigma = 1.2 \Delta x$, giving $\nabla^2 u = f + S(q)$. The charges are determined by requiring that $u$, interpolated back to the IB points with the same kernel, equals $\cos(2x^{ib})\sin(2y^{ib})$; the resulting saddle-point system for $\begin{bmatrix} u(x,y) \\ q \end{bmatrix}$ is solved matrix-free with GMRES.
+We placed an unknown charge $q_k$ at each of $N_{ib}$ immersed boundary points on the circle (spaced $\approx \Delta x$ apart) and spread them onto the grid with a Gaussian kernel $\delta_a$ of width $\sigma = 1.2 \Delta x$, giving $\nabla^2 u = f + S(q)$. The charges are determined by requiring that $u$ equals $\cos(2x^{ib})\sin(2y^{ib})$. The resulting saddle-point system for $[u(x,y) ; q ]$ is solved matrix-free with GMRES.
 
 ### Results 
 
 | ![Descriptive alt text](figures/Problem2_ImmersedBoundary.png) |
 | :-: |
-| *Figure 3: Numerical Solution to Poisson Equation for $u(x,y) = \cos(2x)\sin(2y)$ with Immersed Boundary.* |
+| *Figure 3: Numerical Solution to Poisson Equation for* $u(x,y) = \cos(2x)\sin(2y)$ *with Immersed Boundary.* |
 
 | ![Descriptive alt text](figures/Problem2_ConvergencePlot.png) |
 | :-: |
-| *Figure 4: Convergence of the Poisson solution with an immersed boundary. Relative $L_{\infty}$ and $L_2$ errors against N, with $\mathcal{O}(N^{-2})$ and $\mathcal{O}(N^{-1.5})$ reference slopes.* |
+| *Figure 4: Convergence of the Poisson solution with an immersed boundary. Relative* $L_{\infty}$ *and* $L_2$ *errors against N, with* $\mathcal{O}(N^{-2})$ *and* $\mathcal{O}(N^{-1.5})$ *reference slopes.* |
 
 | ![Descriptive alt text](figures/Problem2_ImmersedBoundaryHeatMap.png) |
 | :-: |
-| Figure 5: Top view of the numerical solution $u(x,y) = \lambda^2 u = -8\cos{2x}\sin{2y}$ with the immersed boundary (red circle radius 1 centered at $(\pi, \pi)$), on a 128x128 grid. The solution matches the test solution. |
+| *Figure 5: Top view of the numerical solution* $u(x,y) = \lambda^2 u = -8\cos{2x}\sin{2y}$ *with the immersed boundary (red circle radius 1 centered at* $(\pi, \pi)$) *, on a 128x128 grid. The solution matches the test solution.* |
 
 As expected, Figures 3 and 5 look identical to the test solution.
 
 **Once your code works, experiment with this spacing. What happens when the IB points are very far apart compared to the finite difference mesh size? What happens when they are very close together? Look at both the accuracy (Problem 3 will give a better idea of this) and the speed of your code?**
 
-We control the spacing through $\alpha$, where the distance between neighboring immersed boundary points is $\Delta s \approx \alpha \Delta x$ (so $N_{ib} = \frac{2 \pi}{\alpha \Delta x^2}$ ). I ran $\alpha \in \{0.25, 0.5, 1, 2, 4, 8\}$ at $N = 64$ for both Problems 2 and 3, and recorded run time, and accuracy. Since Problem 3 has no exact solution, we can measure accuracy by we interpolate $u$ with $\mathcal{J}$ at 400 points evenly soaced around the circle (not only the IB points) and report the maximum difference from $\cos (2x) \sin (2y)$.
+We control the spacing through $\alpha$, where the distance between neighboring immersed boundary data is $\Delta s \approx \alpha \Delta x$. I ran $\alpha \in \{0.25, 0.5, 1, 2, 4, 8\}$ at $N = 64$ for both Problems 2 and 3, and recorded run time, and accuracy. Since Problem 3 has no exact solution, we can measure accuracy by we interpolate $u$ with $\mathcal{J}$ at 400 points evenly spaced around the circle and report the maximum difference from $\cos (2x) \sin (2y)$.
 
 For Problem 2
 
@@ -95,13 +96,13 @@ Problem 3 reuses the Problem 2 code with $f = 0$ and homogeneous Dirichlet data 
 
 | ![Descriptive alt text](figures/Problem3_PotentialPE.png) |
 | :-: |
-| *Figure 6: Solution to Problem 3 on 128 x 128 grid, with $u=0$ on the boundaries of the box and $u = \cos{(2x)}\sin{(2y)}$ prescribed on the immersed boundary boundary  (red curve: circle of radius 1 centered at $(\pi, \pi)$ ). The surface is flat away from the circle and is pulled up and down to match the boundary data along it, forming an "almost minimal surface."* |
+| *Figure 6: Solution to Problem 3 on 128 x 128 grid, with $u=0$ on the boundaries of the box and* $u = \cos{(2x)}\sin{(2y)}$ *prescribed on the immersed boundary boundary  (red curve: circle of radius 1 centered at* $(\pi, \pi)$ *). The surface is flat away from the circle and is pulled up and down to match the boundary data along it, forming an "almost minimal surface."* |
 
 Along the circle, the boundary data has two peaks and two dips reaching about $\pm 1$. Away from the circle, $u$ decays smoothly to zero at the walls, so the solution resembles a soap film stretched across a bent wire frame. Across the circle the slope of the surface changes abruptly. This is produced by the IB charges $q$ which here are large and change sign around the circle, unlike in Problem 2 where they were nearly zero.
 
 ## Problem 4: Charlie's rule
 
-For Charlie's rule, I I sped up the spreading operator $\mathcal{S}$ and interpolation operator $J$, which were the bottleneck of the solver. In the original code, every IB point evaluates the Gaussian $\delta_a$ at every grid point, so each application costs $O(N^3)$ even though $\delta_a$ is essentially zero more than a few grid cells from its center. 
+For Charlie's rule, I sped up the spreading operator $\mathcal{S}$ and interpolation operator $J$, which were the bottleneck of the solver. In the original code, every IB point evaluates the Gaussian $\delta_a$ at every grid point, so each application costs $O(N^3)$ even though $\delta_a$ is essentially zero more than a few grid cells from its center. 
 
 Since $\delta_a$ is a Gaussian with width $\sigma = 1.2 \Delta x$, we can compute the radius that only falls into our prescribed tolerance. 
 
@@ -119,9 +120,9 @@ Since $\delta_a$ is a Gaussian with width $\sigma = 1.2 \Delta x$, we can comput
 
 | ![Descriptive alt text](figures/Problem4_RunTimeLowTol.png) |
 | :-: |
-| *Figure 7: Run time of the full solve against $N$ for the normal and optimized operators with prescribed tolerance $10^{-10}$, with fitted slopes and the speed-up labeled at each point.* |
+| *Figure 7: Run time of the full solve against* $N$ *for the normal and optimized operators with prescribed tolerance* $10^{-10}$*. |
 
-For prescribed toleracne of $1e-4$
+**Prescribed tolerance being $1e-4$**
 
 | $N$ | Normal Time (s) | Optimized Time (s) | Speed-up | max|U_opt - U_normal| |
 | --- | --- | --- | --- | --- |
@@ -133,7 +134,7 @@ For prescribed toleracne of $1e-4$
 
 | ![Descriptive alt text](figures/Problem4_RunTimeHighTol.png) |
 | :-: |
-| *Figure 8: Run time of the full solve against $N$ for the normal and optimized operators with prescribed tolerance $10^{-4}$. The optimized solver is slower than the normal one for $N = 32 - 64$ because GMRES fails to converge within its iteration limit.* |
+| *Figure 8: Run time of the full solve against $N$ for the normal and optimized operators with prescribed tolerance* $10^{-4}$*. The optimized solver is slower than the normal one for* $N = 32 - 64$ *because GMRES fails to converge within its iteration limit.* |
 
 With tolerance $10^{-10}$, the optimized solver gives the same solution as the original and its speed-up grows with $N$. On a grid with less points there is no gain, the window is fixed number of grid points, so on a small grid it coverees most of the domain and only adds overhead. As $N$ grows, the window stays the same size while the grid grows, so the savings grow like $N^2$. The full-solve speed-up is smaller than the speed-up of $\mathcal{S}$ and $J$ alone because the Laplacian and GMRES's own vector operations are unchanged. 
 
