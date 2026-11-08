@@ -18,7 +18,7 @@ Evaluating the test solution on each edge of the box gives
 
 $$u(0, y) = u(2\pi, y) = \sin(2y), \qquad u(x, 0) = u(x, 2\pi) = 0.$$
 
-### Results (Add discretization paragraph?)
+### Results
 
 | ![Surface plot of the Problem 1 solution](figures/NumericalSolutionToPE.png) |
 | :-: |
@@ -30,7 +30,7 @@ Figure 2 shows that both errors decrease with fitted slopes of approximately $-2
 | :-: |
 | *Figure 2: Relative error of the 2D Poisson solution with Dirichlet boundary conditions versus N.* |
 
-## Problem 2: Poisson Equation with an Immersed Boundary (Add about (b))
+## Problem 2: Poisson Equation with an Immersed Boundary
 
 We placed an unknown charge $q_k$ at each of $N_{ib}$ immersed boundary points on the circle (spaced $\approx \Delta x$ apart) and spread them onto the grid with a Gaussian kernel $\delta_a$ of width $\sigma = 1.2 \Delta x$, giving $\nabla^2 u = f + S(q)$. The charges are determined by requiring that $u$, interpolated back to the IB points with the same kernel, equals $\cos(2x^{ib})\sin(2y^{ib})$; the resulting saddle-point system for $\begin{bmatrix} u(x,y) \\ q \end{bmatrix}$ is solved matrix-free with GMRES.
 
@@ -48,6 +48,7 @@ We placed an unknown charge $q_k$ at each of $N_{ib}$ immersed boundary points o
 | :-: |
 | Figure 5: Top view of the numerical solution $u(x,y) = \lambda^2 u = -8\cos{2x}\sin{2y}$ with the immersed boundary (red circle radius 1 centered at $(\pi, \pi)$), on a 128x128 grid. The solution matches the test solution. |
 
+As expected, Figures 3 and 5 look identical to the test solution.
 
 **Once your code works, experiment with this spacing. What happens when the IB points are very far apart compared to the finite difference mesh size? What happens when they are very close together? Look at both the accuracy (Problem 3 will give a better idea of this) and the speed of your code?**
 
