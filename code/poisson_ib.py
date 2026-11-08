@@ -68,7 +68,7 @@ def D2(m, h):
         return sp.diags([1.0, -2.0, 1.0], [-1, 0, 1], shape=(m, m)) / h**2
 
 
-def solve_poisson_ib(a, b, c, d, Nx, Ny, f_fn, g_box, g_ib, tol=1e-10):
+def solve_poisson_ib(a, b, c, d, Nx, Ny, f_fn, g_box, g_ib, tol=1e-10, alpha=1.0):
     dx = (b - a) / Nx
     dy = (d - c) / Ny
     x = np.linspace(a, b, Nx + 1)
