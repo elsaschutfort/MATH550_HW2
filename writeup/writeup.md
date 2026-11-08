@@ -53,7 +53,7 @@ As expected, Figures 3 and 5 look identical to the test solution.
 
 **Once your code works, experiment with this spacing. What happens when the IB points are very far apart compared to the finite difference mesh size? What happens when they are very close together? Look at both the accuracy (Problem 3 will give a better idea of this) and the speed of your code?**
 
-We control the spacing through $\alpha$, where the distance between neighboring immersed boundary data is $\Delta s \approx \alpha \Delta x$. I ran $\alpha \in \{0.25, 0.5, 1, 2, 4, 8\}$ at $N = 64$ for both Problems 2 and 3, and recorded run time, and accuracy. Since Problem 3 has no exact solution, we can measure accuracy by we interpolate $u$ with $\mathcal{J}$ at 400 points evenly spaced around the circle and report the maximum difference from $\cos (2x) \sin (2y)$.
+Spacing is controled through $\alpha$, where the distance between neighboring immersed boundary data is $\Delta s \approx \alpha \Delta x$. To experiment with spacing I ran $\alpha \in \{0.25, 0.5, 1, 2, 4, 8\}$ at $N = 64$ for both Problems 2 and 3, and recorded the run time and accuracy. Since Problem 3 has no exact solution, I measured accuracy by interpolating $u$ with $\mathcal{J}$ at 400 points evenly spaced around the circle and report the maximum difference from $\cos (2x) \sin (2y)$. 
 
 For Problem 2
 
@@ -102,13 +102,13 @@ Along the circle, the boundary data has two peaks and two dips reaching about $\
 
 ## Problem 4: Charlie's rule
 
-For Charlie's rule, I sped up the spreading operator $\mathcal{S}$ and interpolation operator $J$, which were the bottleneck of the solver. In the original code, every IB point evaluates the Gaussian $\delta_a$ at every grid point, so each application costs $O(N^3)$ even though $\delta_a$ is essentially zero more than a few grid cells from its center. 
+For Charlie's rule, I sped up the spreading operator $\mathcal{S}$ and interpolation operator $J$, which were the bottleneck of the solver. In the original code, every IB point evaluates the Gaussian $\delta_a$ at every grid point, so each application costs $\mathcal{O}(N^3)$ even though $\delta_a$ is essentially zero more than a few grid cells from its center. 
 
 Since $\delta_a$ is a Gaussian with width $\sigma = 1.2 \Delta x$, we can compute the radius that only falls into our prescribed tolerance. 
 
 ### Results
 
-**Prescribed tolerance being $1e-10$**
+**Prescribed tolerance being $1^{-10}$**
 
 | $N$ | Normal Time (s) | Optimized Time (s) | Speed-up | max(U_opt - U_normal) |
 | --- | --- | --- | --- | --- |
@@ -122,7 +122,7 @@ Since $\delta_a$ is a Gaussian with width $\sigma = 1.2 \Delta x$, we can comput
 | :-: |
 | *Figure 7: Run time of the full solve against* $N$ *for the normal and optimized operators with prescribed tolerance* $10^{-10}$*. |
 
-**Prescribed tolerance being $1e-4$**
+**Prescribed tolerance being $1^{-4}$**
 
 | $N$ | Normal Time (s) | Optimized Time (s) | Speed-up | max(U_opt - U_normal) |
 | --- | --- | --- | --- | --- |
