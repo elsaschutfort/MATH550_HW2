@@ -47,7 +47,7 @@ We placed an unknown charge $q_k$ at each of $N_{ib}$ immersed boundary points o
 
 | ![Descriptive alt text](figures/Problem2_ImmersedBoundaryHeatMap.png) |
 | :-: |
-| *Figure 5: Top view of the numerical solution* $u(x,y) = \lambda^2 u = -8\cos{2x}\sin{2y}$ *with the immersed boundary (red circle radius 1 centered at* $(\pi, \pi)$) *, on a 128x128 grid. The solution matches the test solution.* |
+| *Figure 5: Top view of the numerical solution* $u(x,y) = \nabla^2 u = -8\cos{2x}\sin{2y}$ *with the immersed boundary (red circle radius 1 centered at* $(\pi, \pi)$ *), on a 128x128 grid. The solution matches the test solution.* |
 
 As expected, Figures 3 and 5 look identical to the test solution.
 
@@ -110,7 +110,7 @@ Since $\delta_a$ is a Gaussian with width $\sigma = 1.2 \Delta x$, we can comput
 
 **Prescribed tolerance being $1e-10$**
 
-| $N$ | Normal Time (s) | Optimized Time (s) | Speed-up | max|U_opt - U_normal| |
+| $N$ | Normal Time (s) | Optimized Time (s) | Speed-up | max(U_opt - U_normal) |
 | --- | --- | --- | --- | --- |
 | 16 | 0.0207 | 0.0259 | 0.8 | 2.32e-09 |
 | 32 | 0.2783 | 0.2748 | 1.0 | 2.05e-08 |
@@ -124,7 +124,7 @@ Since $\delta_a$ is a Gaussian with width $\sigma = 1.2 \Delta x$, we can comput
 
 **Prescribed tolerance being $1e-4$**
 
-| $N$ | Normal Time (s) | Optimized Time (s) | Speed-up | max|U_opt - U_normal| |
+| $N$ | Normal Time (s) | Optimized Time (s) | Speed-up | max(U_opt - U_normal) |
 | --- | --- | --- | --- | --- |
 | 16 | 0.0195 | 0.0239 | 0.8 | 8.39e-04 |
 | 32 | 0.2668 | 0.4024 | 0.7 | 4.06e-04 |
