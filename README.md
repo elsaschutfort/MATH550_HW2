@@ -38,12 +38,12 @@ MATH550-HW0/
 | `code/poisson_ib.py` | Core solver. |
 | `writeup/figures/ConvergenceForPE.png` | Problem 1: relative $L_\infty$ and $L_2$ error vs. $N$ with an $O(N^{-2})$ reference slope |
 | `writeup/figures/NumericalSolutionToPE.png` | Problem 1: 3D surface plot of the numerical solution |
-| `writeup/figures/Problem2_ConvergencePlot.png` | Problem 2: |
-| `writeup/figures/Problem2_ImmersedBoundary.png` | Problem 2: |
-| `writeup/figures/Problem2_ImmersedBoundaryHeatMap.png` | Problem 2: |
-| `writeup/figures/Problem3_PotentialPE.png` | Coming soon |
-| `writeup/figures/Problem4_RunTimeHighTol.png` | Coming soon |
-| `writeup/figures/Problem4_RunTimeLowTol.png` | Coming soon |
+| `writeup/figures/Problem2_ConvergencePlot.png` | Problem 2: relative $L_\infty$ and $L_2$ error vs. $N$ with an $O(N^{-2})$ reference slope |
+| `writeup/figures/Problem2_ImmersedBoundary.png` | Problem 2: 3D surface plot of the solution with the immersed boundary curve drawn in red |
+| `writeup/figures/Problem2_ImmersedBoundaryHeatMap.png` | Problem 2: top-view of the solution with the immersed boundary circle |
+| `writeup/figures/Problem3_PotentialPE.png` | Problem 3: 3D surface plot of the almost minimal surface with the immersed boundary |
+| `writeup/figures/Problem4_RunTimeHighTol.png` |  Problem 4: run time vs. $N$ for the original and optimized solvers at prescribed tolerance $10^{-4}$. |
+| `writeup/figures/Problem4_RunTimeLowTol.png` |  Problem 4: run time vs. $N$ for the original and optimized solvers at prescribed tolerance $10^{-10}$. |
 
 ## Running the Code
 
