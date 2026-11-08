@@ -6,7 +6,7 @@ import time
 u_exact = lambda x, y: np.cos(2*x) * np.sin(2*y)
 f  = lambda x, y: -8 * np.cos(2*x) * np.sin(2*y)
 
-NxVals = np.array([16, 32, 64, 128])
+NxVals = np.array([16, 32, 64, 128, 256])
 prescribed_tol = 1e-10
 n_repeats = 2
 times_optimized, time_normal = [], []
