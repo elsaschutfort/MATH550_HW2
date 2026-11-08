@@ -79,7 +79,7 @@ def solve_poisson_ib(a, b, c, d, Nx, Ny, f_fn, g_box, g_ib, tol=1e-10, alpha=1.0
     xi, yi = x[1:-1], y[1:-1]
     n = Xi.size
 
-    xib, yib = make_ib_points(nib_for_spacing(dx))
+    xib, yib = make_ib_points(nib_for_spacing(dx, alpha=alpha))
     Nib = len(xib)
     L = laplacian(Nx, Ny, dx, dy)
 
