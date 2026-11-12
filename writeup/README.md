@@ -47,7 +47,7 @@ We placed an unknown charge $q_k$ at each of $N_{ib}$ immersed boundary points o
 
 | ![Descriptive alt text](figures/Problem2_ImmersedBoundaryHeatMap.png) |
 | :-: |
-| *Figure 5: Top view of the numerical solution* $u(x,y) = \nabla^2 u = -8\cos{2x}\sin{2y}$ *with the immersed boundary (red circle radius 1 centered at* $(\pi, \pi)$ *), on a 128x128 grid. The solution matches the test solution.* |
+| *Figure 5: Top view of the numerical solution* $u(x,y) = \nabla^2 u = -8\cos{2x}\sin{2y}$ *with the immersed boundary (red circle radius 1 centered at* $(\pi, \pi)$ *), on a 128x128 grid.* |
 
 As expected, Figures 3 and 5 look identical to the test solution.
 
@@ -96,9 +96,9 @@ Problem 3 reuses the Problem 2 code with $f = 0$ and homogeneous Dirichlet data 
 
 | ![Descriptive alt text](figures/Problem3_PotentialPE.png) |
 | :-: |
-| *Figure 6: Solution to Problem 3 on 128 x 128 grid, with $u=0$ on the boundaries of the box and* $u = \cos{(2x)}\sin{(2y)}$ *prescribed on the immersed boundary boundary  (red curve: circle of radius 1 centered at* $(\pi, \pi)$ *). The surface is flat away from the circle and is pulled up and down to match the boundary data along it, forming an "almost minimal surface."* |
+| *Figure 6: Solution to Problem 3 on 128 x 128 grid, with $u=0$ on the boundaries of the box and* $u = \cos{(2x)}\sin{(2y)}$ *prescribed on the immersed boundary boundary (red curve: circle of radius 1 centered at* $(\pi, \pi)$ *). |
 
-Along the circle, the boundary data has two peaks and two dips reaching about $\pm 1$. Away from the circle, $u$ decays smoothly to zero at the walls, so the solution resembles a soap film stretched across a bent wire frame. Across the circle the slope of the surface changes abruptly. This is produced by the IB charges $q$ which here are large and change sign around the circle, unlike in Problem 2 where they were nearly zero.
+The surface is flat away from the circle and is pulled up and down to match the boundary data along it, forming an "almost minimal surface." Along the circle, the boundary data has two peaks and two dips reaching about $\pm 1$. Away from the circle, $u$ decays smoothly to zero at the walls, so the solution resembles a soap film stretched across a bent wire frame. Across the circle the slope of the surface changes abruptly. This is produced by the IB charges $q$ which here are large and change sign around the circle, unlike in Problem 2 where they were nearly zero.
 
 ## Problem 4: Charlie's rule
 
